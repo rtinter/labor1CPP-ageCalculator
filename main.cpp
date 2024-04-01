@@ -36,6 +36,8 @@ int main(int argc, char const *argv[]) {
     //Anfoderung 9
     std::string file = filename(vi);
 
+    //input_Person(file);
+
     std::vector<Person> persons = readFileTransformToVector(file);
 
     printPersonsInFile(persons);
