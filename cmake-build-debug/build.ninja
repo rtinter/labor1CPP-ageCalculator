@@ -64,12 +64,6 @@ build CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o: CXX_COMPILER__labor1r
   OBJECT_DIR = CMakeFiles/labor1refactored.dir
   OBJECT_FILE_DIR = CMakeFiles/labor1refactored.dir
 
-build CMakeFiles/labor1refactored.dir/ModeHandler.cpp.o: CXX_COMPILER__labor1refactored_Debug /Users/renetinter/CLionProjects/labor1refactored/ModeHandler.cpp || cmake_object_order_depends_target_labor1refactored
-  DEP_FILE = CMakeFiles/labor1refactored.dir/ModeHandler.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.2 -fcolor-diagnostics -std=gnu++20
-  OBJECT_DIR = CMakeFiles/labor1refactored.dir
-  OBJECT_FILE_DIR = CMakeFiles/labor1refactored.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target labor1refactored
@@ -78,7 +72,7 @@ build CMakeFiles/labor1refactored.dir/ModeHandler.cpp.o: CXX_COMPILER__labor1ref
 #############################################
 # Link the executable labor1refactored
 
-build labor1refactored: CXX_EXECUTABLE_LINKER__labor1refactored_Debug CMakeFiles/labor1refactored.dir/main.cpp.o CMakeFiles/labor1refactored.dir/NumDemo.cpp.o CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o CMakeFiles/labor1refactored.dir/ModeHandler.cpp.o
+build labor1refactored: CXX_EXECUTABLE_LINKER__labor1refactored_Debug CMakeFiles/labor1refactored.dir/main.cpp.o CMakeFiles/labor1refactored.dir/NumDemo.cpp.o CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.2
   OBJECT_DIR = CMakeFiles/labor1refactored.dir
   POST_BUILD = :

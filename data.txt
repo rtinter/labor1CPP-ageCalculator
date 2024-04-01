@@ -9,7 +9,4 @@ Schmitt
 4.5.1954
 Max
 Mustermann
-22.4.1902
-Rene
-Tinter
-20.2.2023
+31.4.1902

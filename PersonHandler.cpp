@@ -10,7 +10,7 @@ Person readPerson(std::ifstream &file) {
     return person;
 }
 
-std::vector<Person> readFile(std::string const &filename) {
+std::vector<Person> readFileTransformToVector(std::string const &filename) {
     std::ifstream file(filename);
     std::vector<Person> persons;
 
@@ -23,7 +23,7 @@ std::vector<Person> readFile(std::string const &filename) {
 
         while (!file.eof()) {
             Person person = readPerson(file);
-            calculateAge(person); // Alter berechnen und Daten aktualisieren
+            calculateAge(person);
             persons.push_back(person);
         }
     } catch(const std::exception &e) {
@@ -154,14 +154,16 @@ void printAgeInWords(int const &age) {
     std::cout << "Person ist " << ageText << " Jahre alt!" << std::endl;
 }
 
-
-void printPersonsInFile(std::vector<Person> const &persons){
-    for (const auto& person : persons) {
-        std::cout << person.firstName << " " << person.lastName << " " << person.birthday
-                  << " " << person.ageInYears << " Jahre Alt, das sind"
-                  << " " << person.ageInDays << " Tage und "
-                  << " " << person.ageInHours << " Stunden! ";
-        printAgeInWords(person.ageInYears);
-        std::cout << std::endl;
+void printPersonsInFile(std::vector<Person> const &persons) {
+    for (const auto &person : persons) {
+        if (!person.firstName.empty() && !person.lastName.empty() && !person.birthday.empty()) {
+            std::cout << person.firstName << " " << person.lastName << " " << person.birthday;
+            std::cout << " " << person.ageInYears << " Jahre Alt, das sind"
+                          << " " << person.ageInDays << " Tage und "
+                          << " " << person.ageInHours << " Stunden! ";
+            printAgeInWords(person.ageInYears);
+  
+            std::cout << std::endl;
+        }
     }
 }

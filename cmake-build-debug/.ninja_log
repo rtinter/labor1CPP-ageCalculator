@@ -1,11 +1,12 @@
 # ninja log v5
-3	979	1711977857219239965	CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o	1e945d0bcc2d3371
-979	1057	1711977857299683827	labor1refactored	3ce513197c278228
-4	688	1711976771372261927	CMakeFiles/labor1refactored.dir/main.cpp.o	f29bde35463b7780
 11	719	1711960254193546367	CMakeFiles/labor1refactored.dir/NumDemo.cpp.o	606892c0741d585b
-5	600	1711978897811988306	CMakeFiles/labor1refactored.dir/ModeHandler.cpp.o	eed52190b6e4e959
-4	642	1711978897854660898	CMakeFiles/labor1refactored.dir/main.cpp.o	f29bde35463b7780
-5	699	1711978897911121670	CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o	1e945d0bcc2d3371
-3	505	1711979000291532550	CMakeFiles/labor1refactored.dir/ModeHandler.cpp.o	eed52190b6e4e959
+3	642	1711980373352999278	CMakeFiles/labor1refactored.dir/main.cpp.o	f29bde35463b7780
+642	689	1711980373402645047	labor1refactored	8c089c8aa5d193eb
 3	499	1711979018510039653	CMakeFiles/labor1refactored.dir/ModeHandler.cpp.o	eed52190b6e4e959
-499	542	1711979018554911761	labor1refactored	8c089c8aa5d193eb
+4	679	1711979979942733337	CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o	1e945d0bcc2d3371
+1	62	1711981015400588326	build.ninja	1963bfab8f7c571a
+3	605	1711981016011803214	CMakeFiles/labor1refactored.dir/main.cpp.o	f29bde35463b7780
+3	657	1711981016062322860	CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o	1e945d0bcc2d3371
+657	704	1711981016112774839	labor1refactored	3ce513197c278228
+3	726	1711981217054221620	CMakeFiles/labor1refactored.dir/PersonHandler.cpp.o	1e945d0bcc2d3371
+726	776	1711981217109162362	labor1refactored	3ce513197c278228

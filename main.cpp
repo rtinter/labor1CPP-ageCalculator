@@ -1,12 +1,10 @@
 #include "NumDemo.h"
 #include "PersonHandler.h"
-#include "ModeHandler.h"
 #include <iostream>
 #include <vector>
 #include <string>
 
 int main(int argc, char const *argv[]) {
-
 
     // Anforderung 1
     std::vector<std::string> vi = createVectorFromArgv(argc, argv);
@@ -37,7 +35,8 @@ int main(int argc, char const *argv[]) {
 
     //Anfoderung 9
     std::string file = filename(vi);
-    std::vector<Person> persons = readFile(file);
+
+    std::vector<Person> persons = readFileTransformToVector(file);
 
     printPersonsInFile(persons);
 
