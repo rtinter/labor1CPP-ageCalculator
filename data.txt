@@ -1,0 +1,15 @@
+Bernd
+Müller
+22.10.1975
+Sina
+Hansen
+10.2.2001
+Gerda
+Schmitt
+4.5.1954
+Max
+Mustermann
+22.4.1902
+Rene
+Tinter
+20.2.2023
