@@ -23,7 +23,7 @@ std::string filename(std::vector<std::string> const &vi);
 
 Person readPerson(std::ifstream &file);
 
-std::vector<Person> readFileTransformToVector(std::string const &filename);
+std::vector<Person> readFileTransformToVector(std::string const &filePath);
 
 void input_Person(const std::string &filename);
 

@@ -22,6 +22,7 @@ std::vector<std::string> createVectorFromArgv(int const &argc, char const *argv[
     }
 }
 
+//Anforderung 2
 double squared(double b){
     return pow(b,2);
 }

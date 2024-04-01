@@ -1,7 +1,6 @@
 #include <vector>
 #include <iostream>
 
-
 double squared(double b);
 
 void passByReference(int &a);
