@@ -33,7 +33,6 @@ int main(int argc, char const *argv[]) {
     std::cout << doubleToInt << " depicted in hexadezical -> " << std::hex << doubleToInt << std::endl; // Ausgabeformat hexa
     std::cout << std::dec << std::endl; // Ausgabeformat Dez
 
-
     //Anfoderung 9
     // Gibt die zu lesende .txt dateipfad zurück
     std::string file = filename(vi);
