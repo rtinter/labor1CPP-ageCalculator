@@ -10,22 +10,22 @@ int main(int argc, char const *argv[]) {
     std::vector<std::string> vi { createVectorFromArgv(argc, argv)};
 
     // Anforderung 2
-    double stringToDouble = stod(vi[1]);
+    double stringToDouble { stod(vi[1]) };
     std::cout << "converted string = " << vi[1] << " -> double = " << stringToDouble << std::endl;
 
     //Anforderung 4
-    double squaredArgument = squared(stringToDouble);
+    double squaredArgument { squared(stringToDouble) };
     std::cout << "squared " << stringToDouble << " -> " << squaredArgument << std::endl;
 
     //Anforderung 5
-    int doubleToInt = static_cast<int>(squaredArgument);
+    int doubleToInt { static_cast<int>(squaredArgument) };
     std::cout << "converted double variable = " << squaredArgument << " -> to int ->  " << doubleToInt
               << std::endl;
 
     //Anforderung 6
     passByReference(doubleToInt);
     std::cout << "Passed by Reference and added 233 = " << doubleToInt << std::endl;
-    int *pass_ptr = &doubleToInt;
+    int *pass_ptr { &doubleToInt } ;
     passByPointer(pass_ptr);
     std::cout << "Passed by Pointer and added 20 = " << doubleToInt << std::endl;
 
@@ -35,10 +35,11 @@ int main(int argc, char const *argv[]) {
 
     //Anfoderung 9
     // Gibt die zu lesende .txt dateipfad zurück
-    std::string file = filename(vi);
+    std::string file { filename(vi) };
     std::cout << "Filepath -> " << file << std::endl;
 
-    //input_Person(file);
+    input_Person(file);
+    input_Person(file);
 
     //Anforderung 8
     std::vector<Person> persons { readFileTransformToVector(file)};

@@ -23,7 +23,7 @@ std::vector<Person> readFileTransformToVector(std::string const &filePath) {
         file.exceptions(std::ifstream::badbit); //schwerwiegender Systemfehler
 
         while (!file.eof()) {
-            Person person = readPerson(file);
+            Person person { readPerson(file) };
             calculateAge(person);
             persons.push_back(person);
         }
@@ -67,9 +67,10 @@ void input_Person(std::string const &file){
         std::ofstream inputFile(file, std::ios::app); // hinten anfügen durch ios::app
         if (inputFile.is_open()) {
             // Direktes schreiben IN den stream mit <<
+            inputFile << std::endl; //neue Zeile
             inputFile << person.firstName << std::endl;
             inputFile << person.lastName << std::endl;
-            inputFile << person.birthday << std::endl;
+            inputFile << person.birthday; //keine neue Zeile => sonst error bei lesen durch eof
             std::cout << "Person data saved to " << file << std::endl;
         } else {
             // Wirf eine Ausnahme, wenn die Datei nicht geöffnet werden konnte
@@ -83,7 +84,7 @@ void input_Person(std::string const &file){
 
 // Hilfsfunktion, um ein Datum vom String in ein std::tm zu konvertieren
 std::tm parseBirthday(const std::string& birthday) {
-    std::tm tm = {};
+    std::tm tm { {} };
     std::istringstream ss(birthday);
     ss >> std::get_time(&tm, "%d.%m.%Y");
     return tm;
@@ -91,16 +92,16 @@ std::tm parseBirthday(const std::string& birthday) {
 
 void calculateAge(Person &person) {
     // Parsen des Geburtstags in std::tm
-    std::tm birthdateTm = parseBirthday(person.birthday);
+    std::tm birthdateTm { parseBirthday(person.birthday) };
 
     // Umwandlung von std::tm in time_t -> Aus Datum wird Epoche = Zeitpunkt in Sekunden
-    auto birthdateTp = std::chrono::system_clock::from_time_t(std::mktime(&birthdateTm));
+    auto birthdateTp { std::chrono::system_clock::from_time_t(std::mktime(&birthdateTm)) };
 
     // Aktuelles Datum
-    auto now = std::chrono::system_clock::now();
+    auto now { std::chrono::system_clock::now() };
 
     // Differenz in Stunden berechnen
-    auto hoursDiff = std::chrono::duration_cast<std::chrono::hours>(now - birthdateTp).count();
+    auto hoursDiff  {std::chrono::duration_cast<std::chrono::hours>(now - birthdateTp).count()};
 
     // Jahre, Tage und Stunden berechnen
     person.ageInYears = hoursDiff / 8760; // Näherung für ein Jahr in Stunden
@@ -126,8 +127,8 @@ void printAgeInWords(int const &age) {
     if (age < 20) {
         ageText = tillTwenty[age];
     } else if (age < 100) {
-        int u = age % 10; // einer
-        int t = age / 10; // zehner
+        int u { age % 10 }; // einer
+        int t { age / 10 }; // zehner
 
         if (u > 0) {
             ageText = tillTwenty[u] + "und" + twentyTillHundred[t];
@@ -141,8 +142,8 @@ void printAgeInWords(int const &age) {
         if (remainder < 20) {
             ageText = "einhundertund" + tillTwenty[remainder];
         } else {
-            int u = remainder % 10;
-            int t = remainder / 10;
+            int u { remainder % 10 };
+            int t { remainder / 10 };
             if (u > 0) {
                 ageText = "einhundertund" + tillTwenty[u] + "und" + twentyTillHundred[t];
             } else {
