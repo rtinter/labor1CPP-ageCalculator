@@ -9,7 +9,6 @@
 #include <filesystem>
 #include <array>
 
-
 using Person = struct{
     std::string firstName;
     std::string lastName;

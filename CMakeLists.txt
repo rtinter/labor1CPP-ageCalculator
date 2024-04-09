@@ -3,4 +3,5 @@ project(labor1refactored)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(labor1refactored main.cpp NumDemo.h NumDemo.cpp PersonHandler.h PersonHandler.cpp)
+add_executable(labor1refactored main.cpp NumDemo.cpp PersonHandler.cpp)
+

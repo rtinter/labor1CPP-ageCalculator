@@ -11,16 +11,12 @@ Person readPerson(std::ifstream &file) {
 }
 
 //Anforderung 10
-std::vector<Person> readFileTransformToVector(std::string const &filePath) {
+std::vector<Person> readFileTransformToVector(std::string const & filePath) {
     std::ifstream file(filePath);
     std::vector<Person> persons;
 
     try {
-        if (!file) {
-            throw std::runtime_error("Error occurred while trying to read: " + filePath);
-        }
-
-        file.exceptions(std::ifstream::badbit); //schwerwiegender Systemfehler
+        file.exceptions(std::ifstream::badbit | std::ifstream::failbit);
 
         while (!file.eof()) {
             Person person { readPerson(file) };
@@ -33,6 +29,7 @@ std::vector<Person> readFileTransformToVector(std::string const &filePath) {
 
     return persons;
 }
+
 //todo Hier wird noch die alte datei überschrieben wenn sie bereits exisiert -> Datenverlust im vorhandenen file
 std::string filename(const std::vector<std::string>& vi) {
     const std::filesystem::path dirPath = "../";
@@ -66,7 +63,7 @@ void input_Person(std::string const &file){
     try {
         std::ofstream inputFile(file, std::ios::app); // hinten anfügen durch ios::app
         if (inputFile.is_open()) {
-            // Direktes schreiben IN den stream mit <<
+            // Direktes schreiben IN den stream mit
             inputFile << std::endl; //neue Zeile
             inputFile << person.firstName << std::endl;
             inputFile << person.lastName << std::endl;
@@ -125,7 +122,7 @@ void printAgeInWords(int const &age) {
     };
 
     if (age < 20) {
-        ageText = tillTwenty[age];
+        ageText = tillTwenty[age] ;
     } else if (age < 100) {
         int u { age % 10 }; // einer
         int t { age / 10 }; // zehner
@@ -150,10 +147,7 @@ void printAgeInWords(int const &age) {
                 ageText = "einhundertund" + twentyTillHundred[t];
             }
         }
-    } else if (age == 200) {
-        ageText = "zweihundert";
     }
-
     std::cout << "Person ist " << ageText << " Jahre alt!" << std::endl;
 }
 
@@ -162,8 +156,8 @@ void printPersonsInFile(std::vector<Person> const &persons) {
         if (!person.firstName.empty() && !person.lastName.empty() && !person.birthday.empty()) {
             std::cout << person.firstName << " " << person.lastName << " " << person.birthday;
             std::cout << " " << person.ageInYears << " Jahre Alt, das sind"
-                          << " " << person.ageInDays << " Tage und "
-                          << " " << person.ageInHours << " Stunden! ";
+                      << " " << person.ageInDays << " Tage und "
+                      << " " << person.ageInHours << " Stunden! ";
             printAgeInWords(person.ageInYears);
   
             std::cout << std::endl;
