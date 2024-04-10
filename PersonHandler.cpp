@@ -1,6 +1,18 @@
 #include "PersonHandler.h"
 #include <chrono>
 
+static std::array<std::string const, 20> const tillTwenty { {
+        "null", "ein", "zwei", "drei", "vier", "fünf",
+        "sechs", "sieben", "acht", "neun", "zehn",
+        "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn",
+        "sechzehn", "siebzehn", "achtzehn", "neunzehn"
+}};
+
+static std::array<std::string const, 10> const twentyTillHundred { {
+        "", "", "zwanzig", "dreißig", "vierzig", "fünfzig",
+        "sechzig", "siebzig", "achtzig", "neunzig"
+}};
+
 //helpfunction to read a person from file
 Person readPerson(std::ifstream &file) {
     Person person;
@@ -31,7 +43,7 @@ std::vector<Person> readFileTransformToVector(std::string const & filePath) {
 }
 
 //todo Hier wird noch die alte datei überschrieben wenn sie bereits exisiert -> Datenverlust im vorhandenen file
-std::string filename(const std::vector<std::string>& vi) {
+std::string getFilename(const std::vector<std::string>& vi) {
     const std::filesystem::path dirPath = "../";
 
     if (vi.size() < 3) {
@@ -78,7 +90,6 @@ void input_Person(std::string const &file){
     }
 }
 
-
 // Hilfsfunktion, um ein Datum vom String in ein std::tm zu konvertieren
 std::tm parseBirthday(const std::string& birthday) {
     std::tm tm { {} };
@@ -108,18 +119,6 @@ void calculateAge(Person &person) {
 
 void printAgeInWords(int const &age) {
     std::string ageText;
-
-    std::array<std::string const, 20> const tillTwenty = {
-            "null", "ein", "zwei", "drei", "vier", "fünf",
-            "sechs", "sieben", "acht", "neun", "zehn",
-            "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn",
-            "sechzehn", "siebzehn", "achtzehn", "neunzehn"
-    };
-
-    std::array<std::string const, 10> const twentyTillHundred = {
-            "", "", "zwanzig", "dreißig", "vierzig", "fünfzig",
-            "sechzig", "siebzig", "achtzig", "neunzig"
-    };
 
     if (age < 20) {
         ageText = tillTwenty[age] ;

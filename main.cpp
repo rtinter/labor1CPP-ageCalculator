@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]) {
 
     //Anfoderung 9
     // Gibt die zu lesende .txt dateipfad zurück
-    std::string file { filename(vi) };
+    std::string file { getFilename(vi) };
     std::cout << "Filepath -> " << file << std::endl;
 
     //input_Person(file);

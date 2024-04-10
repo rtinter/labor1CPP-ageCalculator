@@ -18,7 +18,7 @@ using Person = struct{
     int ageInHours;
 };
 
-std::string filename(std::vector<std::string> const &vi);
+std::string getFilename(std::vector<std::string> const &vi);
 
 Person readPerson(std::ifstream &file);
 
