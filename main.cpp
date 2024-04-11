@@ -34,12 +34,12 @@ int main(int argc, char const *argv[]) {
     std::cout << std::dec << std::endl; // Ausgabeformat Dez
 
     //Anfoderung 9
-    // Gibt die zu lesende .txt dateipfad zurück
+    // Gibt die zu lesende .txt dateipfad als string zurück
     std::string file { getFilename(vi) };
     std::cout << "Filepath -> " << file << std::endl;
 
     input_Person(file);
-    //input_Person(file);
+    input_Person(file);
 
     //Anforderung 8
     std::vector<Person> persons { readFileTransformToVector(file)};

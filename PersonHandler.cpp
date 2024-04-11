@@ -11,7 +11,7 @@ auto readPerson(std::ifstream &file) {
 }
 
 //Anforderung 10
-std::vector<Person> readFileTransformToVector(std::string const & filePath) {
+std::vector<Person> readFileTransformToVector(std::string const &filePath) {
     std::vector<Person> persons;
 
     try {
@@ -40,14 +40,20 @@ std::string getFilename(const std::vector<std::string>& vi) {
     } else {
         try {
             const std::filesystem::path inputFilename { dirPath / vi[2] };
-            std::ofstream file(inputFilename);
+            std::ofstream file;
+            file.exceptions(std::ofstream::badbit | std::ofstream::failbit);
+            file.open(inputFilename);
             std::cout << "File created: " << inputFilename << std::endl;
             return inputFilename;
         } catch (const std::exception &e) {
             std::cerr << "Error while trying to create the file: " << e.what() << std::endl;
+
+            std::cout << "need to use the dummy file!" << std::endl;
+            const std::filesystem::path dummyFilename = dirPath / "data.txt";
+
+            return dummyFilename;
         }
     }
-    return "";
 }
 
 void input_Person(std::string const &file){
@@ -59,16 +65,15 @@ void input_Person(std::string const &file){
     std::cout << "Birthday: " << std::endl;
     std::cin >> person.birthday;
     try {
-        std::ofstream inputFile(file, std::ios::app); // hinten anfügen durch ios::app
-        if (inputFile.is_open()) {
-            inputFile << person.firstName << std::endl;
-            inputFile << person.lastName << std::endl;
-            inputFile << person.birthday << std::endl;
-            std::cout << "Person data saved to " << file << std::endl;
-        } else {
-            // Wirf eine Ausnahme, wenn die Datei nicht geöffnet werden konnte
-            throw std::runtime_error("Could not open file");
-        }
+        std::ofstream inputFile;
+        inputFile.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+        inputFile.open(file, std::ios::app); // hinten anfügen durch ios::app
+
+        inputFile << person.firstName << std::endl;
+        inputFile << person.lastName << std::endl;
+        inputFile << person.birthday << std::endl;
+
+        std::cout << "Person data saved to " << file << std::endl;
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
