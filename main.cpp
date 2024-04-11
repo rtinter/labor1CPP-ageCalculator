@@ -46,7 +46,6 @@ int main(int argc, char const *argv[]) {
 
     printPersonsInFile(persons);
 
-
     return 0;
 
 }
