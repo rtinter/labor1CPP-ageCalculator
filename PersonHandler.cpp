@@ -18,7 +18,7 @@ std::vector<Person> readFileTransformToVector(std::string const & filePath) {
         std::ifstream file(filePath);
         file.exceptions(std::ifstream::badbit | std::ifstream::failbit);
 
-        while (!file.eof()) {
+        while (file.peek() != EOF) {
             Person person { readPerson(file) };
             calculateAge(person);
             persons.push_back(person);
@@ -63,10 +63,10 @@ void input_Person(std::string const &file){
         std::ofstream inputFile(file, std::ios::app); // hinten anfügen durch ios::app
         if (inputFile.is_open()) {
             // Direktes schreiben IN den stream mit
-            inputFile << std::endl; //neue Zeile
+           // inputFile << std::endl; //neue Zeile
             inputFile << person.firstName << std::endl;
             inputFile << person.lastName << std::endl;
-            inputFile << person.birthday; //keine neue Zeile => sonst error bei lesen durch eof
+            inputFile << person.birthday << std::endl; //keine neue Zeile => sonst error bei lesen durch eof
             std::cout << "Person data saved to " << file << std::endl;
         } else {
             // Wirf eine Ausnahme, wenn die Datei nicht geöffnet werden konnte
