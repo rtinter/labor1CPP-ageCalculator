@@ -1,20 +1,8 @@
 #include "PersonHandler.h"
 #include <chrono>
 
-static std::array<std::string const, 20> const tillTwenty { {
-        "null", "ein", "zwei", "drei", "vier", "fünf",
-        "sechs", "sieben", "acht", "neun", "zehn",
-        "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn",
-        "sechzehn", "siebzehn", "achtzehn", "neunzehn"
-}};
-
-static std::array<std::string const, 10> const twentyTillHundred { {
-        "", "", "zwanzig", "dreißig", "vierzig", "fünfzig",
-        "sechzig", "siebzig", "achtzig", "neunzig"
-}};
-
 //helpfunction to read a person from file
-Person readPerson(std::ifstream &file) {
+auto readPerson(std::ifstream &file) {
     Person person;
     std::getline(file, person.firstName);
     std::getline(file, person.lastName);
@@ -24,10 +12,10 @@ Person readPerson(std::ifstream &file) {
 
 //Anforderung 10
 std::vector<Person> readFileTransformToVector(std::string const & filePath) {
-    std::ifstream file(filePath);
     std::vector<Person> persons;
 
     try {
+        std::ifstream file(filePath);
         file.exceptions(std::ifstream::badbit | std::ifstream::failbit);
 
         while (!file.eof()) {
@@ -38,7 +26,6 @@ std::vector<Person> readFileTransformToVector(std::string const & filePath) {
     } catch(const std::exception &e) {
         std::cerr << "Error occurred: " << e.what() << std::endl;
     }
-
     return persons;
 }
 
@@ -93,6 +80,7 @@ void input_Person(std::string const &file){
 // Hilfsfunktion, um ein Datum vom String in ein std::tm zu konvertieren
 std::tm parseBirthday(const std::string& birthday) {
     std::tm tm { {} };
+    //Lesen eines Strings mit ss um ihn zuweisen zu können
     std::istringstream ss(birthday);
     ss >> std::get_time(&tm, "%d.%m.%Y");
     return tm;
@@ -102,7 +90,7 @@ void calculateAge(Person &person) {
     // Parsen des Geburtstags in std::tm
     std::tm birthdateTm { parseBirthday(person.birthday) };
 
-    // Umwandlung von std::tm in time_t -> Aus Datum wird Epoche = Zeitpunkt in Sekunden
+    // Umwandlung von std::tm in time_t -> Aus Datum wird Timepoint = Zeitpunkt in Sekunden
     auto birthdateTp { std::chrono::system_clock::from_time_t(std::mktime(&birthdateTm)) };
 
     // Aktuelles Datum
@@ -119,6 +107,18 @@ void calculateAge(Person &person) {
 
 void printAgeInWords(int const &age) {
     std::string ageText;
+
+    static std::array<std::string const, 20> const tillTwenty { {
+        "null", "ein", "zwei", "drei", "vier", "fünf",
+        "sechs", "sieben", "acht", "neun", "zehn",
+        "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn",
+        "sechzehn", "siebzehn", "achtzehn", "neunzehn"
+    }};
+
+    static std::array<std::string const, 10> const twentyTillHundred { {
+        "", "", "zwanzig", "dreißig", "vierzig", "fünfzig",
+        "sechzig", "siebzig", "achtzig", "neunzig"
+    }};
 
     if (age < 20) {
         ageText = tillTwenty[age] ;

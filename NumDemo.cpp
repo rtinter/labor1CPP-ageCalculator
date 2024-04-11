@@ -9,17 +9,16 @@ std::vector<std::string> createVectorFromArgv(int const &argc, char const *argv[
     for (int i{0}; i < argc; ++i) {
         vi.emplace_back(argv[i]);
     }
-    {
-        //ranged based loop
-        int i {0};
-        std::cout << "Displaying the programmarguments:" << std::endl;
-        for (const auto &element: vi) { // Referenztyp
-            std::cout << "argv[" << i << "] = " << element << std::endl;
-            i++;
-        }
-        std:: cout << std::endl;
-        return vi;
+
+    //ranged based loop
+    int i {0};
+    std::cout << "Displaying the programmarguments:" << std::endl;
+    for (const auto &element: vi) { // Referenztyp
+        std::cout << "argv[" << i << "] = " << element << std::endl;
+        i++;
     }
+    std:: cout << std::endl;
+    return vi;
 }
 
 //Anforderung 2
