@@ -1,3 +1,0 @@
-/Users/renetinter/CLionProjects/labor1refactored/cmake-build-debug/CMakeFiles/labor1refactored.dir
-/Users/renetinter/CLionProjects/labor1refactored/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/renetinter/CLionProjects/labor1refactored/cmake-build-debug/CMakeFiles/rebuild_cache.dir
