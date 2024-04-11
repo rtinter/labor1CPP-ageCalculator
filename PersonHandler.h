@@ -20,13 +20,13 @@ using Person = struct{
 
 std::string getFilename(std::vector<std::string> const &vi);
 
-auto readPerson(std::ifstream &file);
+Person readPerson(std::ifstream &file);
 
 std::vector<Person> readFileTransformToVector(std::string const &filePath);
 
 void input_Person(const std::string &filename);
 
-std::tm parseBirthday(const std::string &birthday);
+auto parseBirthday(const std::string &birthday);
 
 void calculateAge(Person &person);
 

@@ -22,11 +22,11 @@ std::vector<std::string> createVectorFromArgv(int const &argc, char const *argv[
 }
 
 //Anforderung 2
-double squared(double b){
+double squared(double const &b){
     return pow(b,2);
 }
 
-void passByReference(int &a){ // Es wird keine Kopie erzeugt
+void passByReference(int &a){
     a+=233;
 }
 

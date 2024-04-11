@@ -2,7 +2,7 @@
 #include <chrono>
 
 //helpfunction to read a person from file
-auto readPerson(std::ifstream &file) {
+Person readPerson(std::ifstream &file) {
     Person person;
     std::getline(file, person.firstName);
     std::getline(file, person.lastName);
@@ -30,11 +30,11 @@ std::vector<Person> readFileTransformToVector(std::string const &filePath) {
 }
 
 std::string getFilename(const std::vector<std::string>& vi) {
-    const std::filesystem::path dirPath = "../";
+    const std::filesystem::path dirPath { "../" };
 
     if (vi.size() < 3) {
         std::cout << "using dummyfile data.txt - No filename input" << std::endl;
-        const std::filesystem::path dummyFilename = dirPath / "data.txt";
+        const std::filesystem::path dummyFilename { dirPath / "data.txt" };
 
         return dummyFilename;
     } else {
@@ -80,7 +80,7 @@ void input_Person(std::string const &file){
 }
 
 // Hilfsfunktion, um ein Datum vom String in ein std::tm zu konvertieren
-std::tm parseBirthday(const std::string& birthday) {
+auto parseBirthday(const std::string& birthday) {
     std::tm tm { {} };
     //Lesen eines Strings mit ss um ihn zuweisen zu können
     std::istringstream ss(birthday);
