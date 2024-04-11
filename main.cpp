@@ -38,7 +38,7 @@ int main(int argc, char const *argv[]) {
     std::string file { getFilename(vi) };
     std::cout << "Filepath -> " << file << std::endl;
 
-    //input_Person(file);
+    input_Person(file);
     //input_Person(file);
 
     //Anforderung 8

@@ -29,7 +29,6 @@ std::vector<Person> readFileTransformToVector(std::string const & filePath) {
     return persons;
 }
 
-//todo Hier wird noch die alte datei überschrieben wenn sie bereits exisiert -> Datenverlust im vorhandenen file
 std::string getFilename(const std::vector<std::string>& vi) {
     const std::filesystem::path dirPath = "../";
 
@@ -62,11 +61,9 @@ void input_Person(std::string const &file){
     try {
         std::ofstream inputFile(file, std::ios::app); // hinten anfügen durch ios::app
         if (inputFile.is_open()) {
-            // Direktes schreiben IN den stream mit
-           // inputFile << std::endl; //neue Zeile
             inputFile << person.firstName << std::endl;
             inputFile << person.lastName << std::endl;
-            inputFile << person.birthday << std::endl; //keine neue Zeile => sonst error bei lesen durch eof
+            inputFile << person.birthday << std::endl;
             std::cout << "Person data saved to " << file << std::endl;
         } else {
             // Wirf eine Ausnahme, wenn die Datei nicht geöffnet werden konnte
@@ -105,20 +102,23 @@ void calculateAge(Person &person) {
     person.ageInHours = hoursDiff;
 }
 
+
+//----------------Arrays für printAgeInWords--------------------------------
+static std::array<std::string const, 20> const tillTwenty { {
+    "null", "ein", "zwei", "drei", "vier", "fünf",
+    "sechs", "sieben", "acht", "neun", "zehn",
+    "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn",
+    "sechzehn", "siebzehn", "achtzehn", "neunzehn"
+}};
+
+static std::array<std::string const, 10> const twentyTillHundred { {
+    "", "", "zwanzig", "dreißig", "vierzig", "fünfzig",
+    "sechzig", "siebzig", "achtzig", "neunzig"
+}};
+//---------------------------------------------------------------------------
+
 void printAgeInWords(int const &age) {
     std::string ageText;
-
-    static std::array<std::string const, 20> const tillTwenty { {
-        "null", "ein", "zwei", "drei", "vier", "fünf",
-        "sechs", "sieben", "acht", "neun", "zehn",
-        "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn",
-        "sechzehn", "siebzehn", "achtzehn", "neunzehn"
-    }};
-
-    static std::array<std::string const, 10> const twentyTillHundred { {
-        "", "", "zwanzig", "dreißig", "vierzig", "fünfzig",
-        "sechzig", "siebzig", "achtzig", "neunzig"
-    }};
 
     if (age < 20) {
         ageText = tillTwenty[age] ;
@@ -147,7 +147,7 @@ void printAgeInWords(int const &age) {
             }
         }
     }
-    std::cout << "Person ist " << ageText << " Jahre alt!" << std::endl;
+    std::cout << "Person ist " << ageText << " Jahr(e) alt!" << std::endl;
 }
 
 void printPersonsInFile(std::vector<Person> const &persons) {
