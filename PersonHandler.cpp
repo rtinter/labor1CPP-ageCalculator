@@ -10,26 +10,8 @@ Person readPerson(std::ifstream &file) {
     return person;
 }
 
-//Anforderung 10
-std::vector<Person> readFileTransformToVector(std::string const &filePath) {
-    std::vector<Person> persons;
-
-    try {
-        std::ifstream file(filePath);
-        file.exceptions(std::ifstream::badbit | std::ifstream::failbit);
-
-        while (file.peek() != EOF) {
-            Person person { readPerson(file) };
-            calculateAge(person);
-            persons.push_back(person);
-        }
-    } catch(const std::exception &e) {
-        std::cerr << "Error occurred: " << e.what() << std::endl;
-    }
-    return persons;
-}
-
-std::string getFilename(const std::vector<std::string>& vi) {
+//Abforderung 9 / 11 / 12
+std::string getFilename(const std::vector<std::string> &vi) {
     const std::filesystem::path dirPath { "../" };
 
     if (vi.size() < 3) {
@@ -56,6 +38,26 @@ std::string getFilename(const std::vector<std::string>& vi) {
     }
 }
 
+//Anforderung 10 / 11
+std::vector<Person> readFileTransformToVector(std::string const &filePath) {
+    std::vector<Person> persons;
+
+    try {
+        std::ifstream file(filePath);
+        file.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+
+        while (file.peek() != EOF) {
+            Person person { readPerson(file) };
+            calculateAge(person);
+            persons.emplace_back(person);
+        }
+    } catch(const std::exception &e) {
+        std::cerr << "Error occurred while reading! ->  " << e.what() << std::endl;
+    }
+    return persons;
+}
+
+// Anforderung 10 / 11
 void input_Person(std::string const &file){
     Person person;
     std::cout << "Firstname: " << std::endl;
@@ -75,10 +77,11 @@ void input_Person(std::string const &file){
 
         std::cout << "Person data saved to " << file << std::endl;
     } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        std::cerr << "Error while writing person into file: " << e.what() << std::endl;
     }
 }
 
+//Anforderung 13
 // Hilfsfunktion, um ein Datum vom String in ein std::tm zu konvertieren
 auto parseBirthday(const std::string& birthday) {
     std::tm tm { {} };
@@ -88,6 +91,7 @@ auto parseBirthday(const std::string& birthday) {
     return tm;
 }
 
+//Anfoderderung 13
 void calculateAge(Person &person) {
     // Parsen des Geburtstags in std::tm
     std::tm birthdateTm { parseBirthday(person.birthday) };
@@ -122,6 +126,7 @@ static std::array<std::string const, 10> const twentyTillHundred { {
 }};
 //---------------------------------------------------------------------------
 
+//Anforderung 14
 void printAgeInWords(int const &age) {
     std::string ageText;
 
@@ -154,7 +159,7 @@ void printAgeInWords(int const &age) {
     }
     std::cout << "Person ist " << ageText << " Jahr(e) alt!" << std::endl;
 }
-
+//Anforderung 15
 void printPersonsInFile(std::vector<Person> const &persons) {
     for (const auto &person : persons) {
         if (!person.firstName.empty() && !person.lastName.empty() && !person.birthday.empty()) {

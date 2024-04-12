@@ -27,9 +27,9 @@ double squared(double const &b){
 }
 
 void passByReference(int &a){
-    a+=233;
+    a += 233;
 }
 
 void passByPointer (int *ptr){
-    (*ptr)+=20;
+    (*ptr) += 20;
 }

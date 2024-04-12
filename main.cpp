@@ -30,18 +30,18 @@ int main(int argc, char const *argv[]) {
     std::cout << "Passed by Pointer and added 20 = " << doubleToInt << std::endl;
 
     //Anforderung 7
-    std::cout << doubleToInt << " depicted in hexadezical -> " << std::hex << doubleToInt << std::endl; // Ausgabeformat hexa
+    std::cout << doubleToInt << " represented in hexadecimal -> " << std::hex << doubleToInt << std::endl; // Ausgabeformat hexa
     std::cout << std::dec << std::endl; // Ausgabeformat Dez
 
-    //Anfoderung 9
-    // Gibt die zu lesende .txt dateipfad als string zurück
+    //Anfoderung 10
+    // Gibt den zu lesenden .txt dateipfad als string zurück
     std::string file { getFilename(vi) };
     std::cout << "Filepath -> " << file << std::endl;
 
     //input_Person(file);
     //input_Person(file);
 
-    //Anforderung 8
+    //Anforderung 9
     std::vector<Person> persons { readFileTransformToVector(file)};
 
     printPersonsInFile(persons);
